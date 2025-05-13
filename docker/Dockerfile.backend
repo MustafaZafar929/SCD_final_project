@@ -1,0 +1,10 @@
+FROM node:slim
+WORKDIR /app
+# Install deps
+COPY app/backend/package*.json ./
+RUN npm ci
+# Copy source
+COPY app/backend ./
+EXPOSE 3000
+CMD ["npm", "start"]
+

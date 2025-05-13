@@ -1,0 +1,7 @@
+FROM node:slim
+WORKDIR /app
+COPY app/admin/package*.json ./
+RUN npm ci
+COPY app/admin ./
+EXPOSE 5173
+CMD ["npm", "run", "dev"]

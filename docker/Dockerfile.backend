@@ -1,10 +1,17 @@
 FROM node:slim
+
+# Install build tools required by bcrypt
+RUN apt-get update && apt-get install -y build-essential python3
+
 WORKDIR /app
-# Install deps
+
+# Install dependencies
 COPY app/backend/package*.json ./
 RUN npm ci
-# Copy source
-COPY app/backend ./
-EXPOSE 3000
-CMD ["npm", "start"]
 
+# Copy source code
+COPY app/backend ./ 
+
+EXPOSE 4000
+
+CMD ["npm", "start"]
